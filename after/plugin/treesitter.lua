@@ -1,25 +1,25 @@
-require'nvim-treesitter.configs'.setup {
-  -- A list of parser names, or "all"
-  ensure_installed = {  "go", "sql",  "lua",  "python" },
+require("nvim-treesitter.configs").setup {
+    -- Lista de parsers a instalar
+    ensure_installed = { "go", "lua", "python" },
 
-  -- Install parsers synchronously (only applied to `ensure_installed`)
-  sync_install = false,
+    -- Instala parsers sincrónicamente (solo para ensure_installed)
+    sync_install = false,
 
-  -- Automatically install missing parsers when entering buffer
-  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-  auto_install = true,
+    -- Instala automáticamente parsers faltantes al abrir buffer
+    auto_install = true,
 
-  ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
-  -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
+    -- Opcional: directorio de instalación de parsers
+    -- parser_install_dir = "/ruta/a/parsers",
+    -- recuerda agregar al runtimepath: vim.opt.runtimepath:append("/ruta/a/parsers")
 
-  highlight = {
-    -- `false` will disable the whole extension
-    enable = true,
+    highlight = {
+        enable = true, -- habilita resaltado de sintaxis
+        additional_vim_regex_highlighting = false,
+    },
 
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
+    indent = { enable = true }, -- habilita indentación basada en treesitter
+
+    -- Campos requeridos en la nueva versión
+    modules = {},        -- puede estar vacío si no usas módulos extra
+    ignore_install = {}, -- lista de parsers a ignorar
 }
