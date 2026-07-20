@@ -1,6 +1,7 @@
 vim.opt.nu = true
 vim.opt.rnu = true
 vim.g.netrw_bufsettings = "nu"
+vim.opt.clipboard = "unnamedplus"
 
 vim.opt.termguicolors = true
 vim.opt.backup = false
@@ -62,6 +63,12 @@ require("catppuccin").setup({
     float = {
         transparent = true,        -- enable transparent floating windows
         solid = false,             -- use solid styling for floating windows, see |winborder|
+    },
+    integrations = {
+        treesitter = true,
+        native_lsp = {
+            enabled = true,
+        },
     },
 })
 

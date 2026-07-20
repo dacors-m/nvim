@@ -23,7 +23,7 @@ keymap("n", "<leader>po", function()
 end, { desc = "Reload Nvim config" })
 
 -- Diagnostics
-keymap("n", "gl", vim.diagnostic.open_float, { desc = "Open diagnostic float" })
+keymap("n", "<leader>;", vim.diagnostic.open_float, { desc = "Open diagnostic float" })
 
 -- Clipboard sync
 vim.opt.clipboard = "unnamedplus"
@@ -46,12 +46,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(e)
         local opts = { buffer = e.buf }
         local lsp_keymaps = {
-            { "<leader>rv", vim.lsp.buf.rename, "Rename symbol" },
-            { "<leader>ff", vim.lsp.buf.format, "Format buffer" },
-            { "gd", vim.lsp.buf.definition, "Go to definition" },
-            { "gr", vim.lsp.buf.references, "Go to references" },
-            { "gi", vim.lsp.buf.implementation, "Go to implementation" },
-            { "gc", vim.lsp.buf.outgoing_calls, "Show outgoing calls" },
+            { "<leader>rv", vim.lsp.buf.rename,         "Rename symbol" },
+            { "<leader>ff", vim.lsp.buf.format,         "Format buffer" },
+            { "gd",         vim.lsp.buf.definition,     "Go to definition" },
+            { "gr",         vim.lsp.buf.references,     "Go to references" },
+            { "gi",         vim.lsp.buf.implementation, "Go to implementation" },
+            { "gc",         vim.lsp.buf.outgoing_calls, "Show outgoing calls" },
         }
 
         for _, map in ipairs(lsp_keymaps) do

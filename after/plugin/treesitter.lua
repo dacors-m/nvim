@@ -1,14 +1,14 @@
-require("nvim-treesitter.configs").setup {
-    -- Lista de parsers a instalar
+require("nvim-treesitter.config").setup {
+    -- lista de parsers a instalar
     ensure_installed = { "go", "lua", "python" },
 
-    -- Instala parsers sincrónicamente (solo para ensure_installed)
+    -- instala parsers sincrónicamente (solo para ensure_installed)
     sync_install = false,
 
-    -- Instala automáticamente parsers faltantes al abrir buffer
+    -- instala automáticamente parsers faltantes al abrir buffer
     auto_install = true,
 
-    -- Opcional: directorio de instalación de parsers
+    -- opcional: directorio de instalación de parsers
     -- parser_install_dir = "/ruta/a/parsers",
     -- recuerda agregar al runtimepath: vim.opt.runtimepath:append("/ruta/a/parsers")
 
@@ -19,7 +19,19 @@ require("nvim-treesitter.configs").setup {
 
     indent = { enable = true }, -- habilita indentación basada en treesitter
 
-    -- Campos requeridos en la nueva versión
+    -- campos requeridos en la nueva versión
     modules = {},        -- puede estar vacío si no usas módulos extra
     ignore_install = {}, -- lista de parsers a ignorar
+
+    install_config = {
+        compiler = "zig",
+    },
 }
+
+-- Forzar el resaltado por defecto
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "go",
+    callback = function()
+        vim.treesitter.start()
+    end,
+})
